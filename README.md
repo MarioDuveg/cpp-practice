@@ -1,4 +1,4 @@
-# C++ Practice Judge — Render fix v5
+# C++ Practice Judge — Render ui v6
 
 > Esta versión añade feedback visible fijo (toast + barra superior), rompe caché de assets y conserva el runner directo de v4.
 

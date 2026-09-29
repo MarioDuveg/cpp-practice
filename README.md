@@ -133,3 +133,14 @@ Está pensado para práctica personal, demostraciones o un salón con usuarios d
 El plan Free de Render tiene CPU muy limitada. Esta versión genera un header precompilado de C++ (`judge_pch.hpp.gch`) durante el Docker build y compila los envíos con `-O0`, de modo que el trabajo pesado de parsear STL no se repita en cada ejecución.
 
 Después de desplegar, abre `/api/diagnostics/compiler`. Debe mostrar `pchExists: true` y `compileTimedOut: false`. El campo `compileElapsedMs` indica cuánto tarda una compilación mínima real en esa instancia.
+
+
+## Render fix v4
+
+Esta versión elimina el wrapper `bash + timeout + ulimit` usado al ejecutar los binarios.
+En algunos contenedores de Render ese wrapper terminaba con código `125` aunque el programa C++
+hubiera compilado correctamente. El juez ahora ejecuta el binario directamente mediante Node,
+con timeout de 3.5 segundos, límite de salida y eliminación del grupo de procesos.
+
+Para verificar que Render desplegó esta versión, abre `/api/health`: debe incluir
+`"version":"fix-v4"`. La cabecera de la página también muestra `fix v4`.

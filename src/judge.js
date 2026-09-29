@@ -147,20 +147,25 @@ async function judge(problem, userCode, mode = 'submit', log = () => {}) {
 
     for (const { test, index } of selected) {
       log(`test ${index + 1} iniciado`);
-      // El contenedor completo corre como usuario no privilegiado (USER node).
-      // bash aplica límites básicos y timeout agrega una segunda barrera además
-      // del timeout de Node.
-      const runnerScript = 'ulimit -t 2 2>/dev/null || true; ulimit -v 262144 2>/dev/null || true; ulimit -f 2048 2>/dev/null || true; ulimit -n 64 2>/dev/null || true; ulimit -u 32 2>/dev/null || true; exec timeout -s KILL 3s "$1" "$2"';
-      const run = await runProcess('bash', ['-lc', runnerScript, 'judge-runner', binaryPath, String(index)], {
+      // Ejecutamos el binario directamente. En Render el wrapper anterior
+      // (bash + timeout + ulimit) terminaba con código 125 antes de ejecutar
+      // correctamente el programa. runProcess ya impone timeout, mata el
+      // grupo de procesos y limita stdout/stderr, por lo que no necesitamos
+      // esa capa adicional para este juez de práctica.
+      const run = await runProcess(binaryPath, [String(index)], {
         cwd: tempDir,
         timeoutMs: 3500
       });
-      log(`test ${index + 1} terminó code=${run.code} timeout=${run.timedOut} en ${run.elapsedMs} ms`);
+      log(`test ${index + 1} terminó code=${run.code} signal=${run.signal || '-'} timeout=${run.timedOut} en ${run.elapsedMs} ms`);
+      if (run.code !== 0 || run.stderr) {
+        const detail = (run.stderr || '').replace(/\s+/g, ' ').trim().slice(0, 500);
+        if (detail) log(`test ${index + 1} stderr: ${detail}`);
+      }
 
       let status = 'Accepted';
       let actual = '';
 
-      if (run.timedOut || run.code === 124 || run.code === 137 || run.signal === 'SIGKILL') {
+      if (run.timedOut || run.signal === 'SIGKILL') {
         status = 'Time Limit Exceeded';
       } else if (run.overflow) {
         status = 'Output Limit Exceeded';

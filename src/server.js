@@ -13,6 +13,15 @@ let activeJobs = 0;
 app.disable('x-powered-by');
 app.use(express.json({ limit: '64kb' }));
 
+// Evita que el navegador conserve una versión anterior del frontend durante
+// redeploys de Render.
+app.use((req, res, next) => {
+  if (req.path === '/' || req.path === '/index.html' || req.path === '/app.js' || req.path === '/styles.css') {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+  }
+  next();
+});
+
 // Trazas API: aparecen en Render > Logs.
 app.use('/api', (req, res, next) => {
   const started = Date.now();
@@ -46,7 +55,7 @@ function publicProblem(problem) {
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, compiler: 'g++', standard: 'C++17', problems: problems.length });
+  res.json({ ok: true, version: 'fix-v4', compiler: 'g++', standard: 'C++17', problems: problems.length });
 });
 
 app.get('/api/diagnostics/compiler', async (_req, res) => {

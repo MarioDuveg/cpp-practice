@@ -23,7 +23,7 @@ async function api(url, options = {}) {
   const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const res = await fetch(url, { ...options, signal: controller.signal });
+    const res = await fetch(url, { ...options, cache: 'no-store', signal: controller.signal });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
     return data;
@@ -234,6 +234,8 @@ async function judge(mode) {
 }
 
 function renderResults(result, mode) {
+  if (!result || typeof result !== 'object') throw new Error('Respuesta inválida del juez.');
+  if (!Array.isArray(result.results)) result.results = [];
   const accepted = result.status === 'Accepted';
   $('verdict').className = `verdict ${accepted ? 'accepted' : 'error'}`;
   $('verdict').textContent = result.status;

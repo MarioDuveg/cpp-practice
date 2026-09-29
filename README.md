@@ -1,14 +1,14 @@
-# C++ Practice Judge — Render ui v6
+# C++ Practice Judge — Render ui v7
 
-> Esta versión añade feedback visible fijo (toast + barra superior), rompe caché de assets y conserva el runner directo de v4.
+> Esta versión conserva la interfaz con consola fija debajo del editor y elimina los ejercicios de Stack/Queue solicitados.
 
 # C++ Practice Judge
 
-Mini plataforma tipo LeetCode para practicar algoritmos y estructuras de datos en **C++17**. Incluye 33 ejercicios, editor Monaco con resaltado de C++, compilación con `g++`, casos visibles/ocultos y verdicts de ejecución.
+Mini plataforma tipo LeetCode para practicar algoritmos y estructuras de datos en **C++17**. Incluye 29 ejercicios, editor Monaco con resaltado de C++, compilación con `g++`, casos visibles/ocultos y verdicts de ejecución.
 
 ## Incluye
 
-- 33 problemas: recursión, Subset Sum, búsqueda binaria, ordenamiento lineal, Linked Lists, Stacks y Queues.
+- 29 problemas: recursión, Subset Sum, búsqueda binaria, ordenamiento lineal y Linked Lists.
 - Editor **Monaco** con syntax highlighting de C++.
 - Comportamiento especial de `Enter`: la nueva línea comienza exactamente en la misma columna horizontal del cursor.
 - Compilación real con `g++ -std=c++17`.
@@ -127,10 +127,6 @@ Está pensado para práctica personal, demostraciones o un salón con usuarios d
 27. Palindrome Linked List
 28. Remove Nth Node From End
 29. Sumar elementos de Linked List
-30. Valid Parentheses — Stack
-31. Baseball Game — Stack
-32. Number of Recent Calls — Queue
-33. Time Needed to Buy Tickets — Queue
 
 ## Nota de rendimiento en Render Free
 

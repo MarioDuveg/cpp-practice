@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>C++ Practice Judge</title>
-  <link rel="stylesheet" href="/styles.css?v=4" />
+  <link rel="stylesheet" href="/styles.css?v=5-20260929a" />
 </head>
 <body>
   <header class="topbar">
@@ -16,7 +16,8 @@
       </div>
     </div>
     <div class="top-actions">
-      <span class="compiler-badge">C++17 · g++ · fix v4</span>
+      <span class="compiler-badge">C++17 · g++ · <strong id="frontendVersion">fix v5</strong></span>
+      <span id="headerVerdict" class="header-verdict neutral">Listo</span>
       <button id="resetBtn" class="btn btn-ghost">Restablecer</button>
       <button id="runBtn" class="btn btn-secondary">Ejecutar</button>
       <button id="submitBtn" class="btn btn-primary">Enviar</button>
@@ -89,6 +90,7 @@
   </main>
 
   <script src="/monaco/vs/loader.js"></script>
-  <script src="/app.js?v=4"></script>
+  <div id="judgeToast" class="judge-toast" role="status" aria-live="polite" hidden></div>
+  <script src="/app.js?v=5-20260929a"></script>
 </body>
 </html>

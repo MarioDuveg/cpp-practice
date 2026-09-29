@@ -1,3 +1,7 @@
+# C++ Practice Judge — Render fix v5
+
+> Esta versión añade feedback visible fijo (toast + barra superior), rompe caché de assets y conserva el runner directo de v4.
+
 # C++ Practice Judge
 
 Mini plataforma tipo LeetCode para practicar algoritmos y estructuras de datos en **C++17**. Incluye 33 ejercicios, editor Monaco con resaltado de C++, compilación con `g++`, casos visibles/ocultos y verdicts de ejecución.

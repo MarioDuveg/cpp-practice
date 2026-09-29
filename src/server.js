@@ -5,6 +5,8 @@ const problems = require('./problems.json');
 const { judge, compilerDiagnostic } = require('./judge');
 
 const app = express();
+const APP_VERSION = 'fix-v5';
+app.set('etag', false);
 const PORT = Number(process.env.PORT || 10000);
 const MAX_CODE_LENGTH = 30000;
 const MAX_CONCURRENT_JOBS = Number(process.env.MAX_CONCURRENT_JOBS || 1);
@@ -16,7 +18,7 @@ app.use(express.json({ limit: '64kb' }));
 // Evita que el navegador conserve una versión anterior del frontend durante
 // redeploys de Render.
 app.use((req, res, next) => {
-  if (req.path === '/' || req.path === '/index.html' || req.path === '/app.js' || req.path === '/styles.css') {
+  if (!req.path.startsWith('/monaco/')) {
     res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
   }
   next();
@@ -55,7 +57,7 @@ function publicProblem(problem) {
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, version: 'fix-v4', compiler: 'g++', standard: 'C++17', problems: problems.length });
+  res.json({ ok: true, version: APP_VERSION, compiler: 'g++', standard: 'C++17', problems: problems.length });
 });
 
 app.get('/api/diagnostics/compiler', async (_req, res) => {
@@ -100,7 +102,7 @@ app.post('/api/judge/:id', async (req, res) => {
     });
     const result = await Promise.race([judge(problem, code, mode, log), hardTimeout]);
     log(`fin status=${result.status}`);
-    if (!res.headersSent) res.json(result);
+    if (!res.headersSent) res.json({ ...result, serverVersion: APP_VERSION, requestId: rid });
   } catch (err) {
     console.error(`[JUDGE ${rid}]`, err);
     if (!res.headersSent) {

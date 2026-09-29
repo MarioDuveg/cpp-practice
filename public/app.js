@@ -3,6 +3,7 @@ let problems = [];
 let currentProblem = null;
 let activeCategory = 'Todos';
 let isJudging = false;
+let toastTimer = null;
 
 const $ = (id) => document.getElementById(id);
 const storageKey = (id) => `cpp-practice-code:${id}`;
@@ -23,8 +24,19 @@ async function api(url, options = {}) {
   const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const res = await fetch(url, { ...options, cache: 'no-store', signal: controller.signal });
-    const data = await res.json().catch(() => ({}));
+    const res = await fetch(url, {
+      ...options,
+      cache: 'no-store',
+      headers: { ...(options.headers || {}), 'Cache-Control': 'no-cache' },
+      signal: controller.signal
+    });
+    const raw = await res.text();
+    let data;
+    try {
+      data = raw ? JSON.parse(raw) : {};
+    } catch (_) {
+      throw new Error(`Respuesta inválida del servidor (HTTP ${res.status}).`);
+    }
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
     return data;
   } catch (err) {
@@ -34,6 +46,30 @@ async function api(url, options = {}) {
     throw err;
   } finally {
     clearTimeout(timer);
+  }
+}
+
+function setHeaderVerdict(text, kind = 'neutral') {
+  const el = $('headerVerdict');
+  if (!el) return;
+  el.textContent = text;
+  el.className = `header-verdict ${kind}`;
+}
+
+function showToast(title, message = '', kind = 'neutral', sticky = false) {
+  const el = $('judgeToast');
+  const text = message ? `${title} — ${message}` : title;
+  if (!el) {
+    // Último recurso: el usuario siempre recibe feedback aunque el DOM sea viejo.
+    window.alert(text);
+    return;
+  }
+  clearTimeout(toastTimer);
+  el.hidden = false;
+  el.className = `judge-toast ${kind}`;
+  el.innerHTML = `<strong>${escapeHtml(title)}</strong>${message ? `<span>${escapeHtml(message)}</span>` : ''}`;
+  if (!sticky) {
+    toastTimer = setTimeout(() => { el.hidden = true; }, 8000);
   }
 }
 
@@ -108,6 +144,10 @@ function initEditor() {
 }
 
 async function bootstrap() {
+  try {
+    const health = await api('/api/health');
+    if ($('frontendVersion')) $('frontendVersion').textContent = health.version || 'fix-v5';
+  } catch (_) {}
   problems = await api('/api/problems');
   $('problemCount').textContent = `${problems.length} ejercicios`;
   renderCategoryFilters();
@@ -193,6 +233,7 @@ function renderProblem(p) {
 function clearResults() {
   $('verdict').className = 'verdict neutral';
   $('verdict').textContent = 'Listo';
+  setHeaderVerdict('Listo', 'neutral');
   $('resultSummary').textContent = 'Aún no has ejecutado pruebas.';
   $('results').className = 'results-body empty-state';
   $('results').innerHTML = 'Presiona <strong>Ejecutar</strong> para correr casos visibles o <strong>Enviar</strong> para evaluar todos los casos.';
@@ -204,11 +245,20 @@ function setBusy(busy) {
   $('submitBtn').disabled = busy;
   $('resetBtn').disabled = busy;
   if (busy) {
+    $('runBtn').dataset.originalText ||= $('runBtn').textContent;
+    $('submitBtn').dataset.originalText ||= $('submitBtn').textContent;
+    $('runBtn').textContent = 'Evaluando...';
+    $('submitBtn').textContent = 'Evaluando...';
     $('verdict').className = 'verdict running';
     $('verdict').textContent = 'Evaluando';
+    setHeaderVerdict('Evaluando', 'running');
+    showToast('Evaluando', 'Compilando C++17 y ejecutando pruebas...', 'running', true);
     $('resultSummary').textContent = 'Compilando con g++ y ejecutando casos...';
     $('results').className = 'results-body empty-state';
     $('results').textContent = 'Compilando C++17...';
+  } else {
+    $('runBtn').textContent = $('runBtn').dataset.originalText || 'Ejecutar';
+    $('submitBtn').textContent = $('submitBtn').dataset.originalText || 'Enviar';
   }
 }
 
@@ -221,10 +271,22 @@ async function judge(mode) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code: editor.getValue(), mode })
     });
+    console.log('[JUDGE RESPONSE]', result);
+    const passed = Array.isArray(result.results) ? result.results.filter((r) => r.status === 'Accepted').length : 0;
+    const total = Array.isArray(result.results) ? result.results.length : 0;
+    const kind = result.status === 'Accepted' ? 'accepted' : 'error';
+    const message = result.compileError
+      ? 'El código no compiló. Revisa el detalle en Resultado.'
+      : `${passed}/${total} casos aprobados.`;
+    setHeaderVerdict(result.status || 'Resultado', kind);
+    showToast(result.status || 'Resultado', message, kind, !!result.compileError);
     renderResults(result, mode);
   } catch (err) {
+    console.error('[JUDGE FRONTEND ERROR]', err);
     $('verdict').className = 'verdict error';
     $('verdict').textContent = 'Error';
+    setHeaderVerdict('Error', 'error');
+    showToast('Error', err.message, 'error', true);
     $('resultSummary').textContent = err.message;
     $('results').className = 'results-body';
     $('results').innerHTML = `<pre class="compile-error">${escapeHtml(err.message)}</pre>`;
@@ -284,3 +346,13 @@ window.addEventListener('hashchange', () => {
 });
 
 initEditor();
+
+
+window.addEventListener('error', (event) => {
+  console.error('[FRONTEND ERROR]', event.error || event.message);
+  try { showToast('Error de interfaz', event.message || 'Error JavaScript inesperado.', 'error', true); } catch (_) {}
+});
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('[FRONTEND PROMISE ERROR]', event.reason);
+  try { showToast('Error de interfaz', event.reason?.message || String(event.reason || 'Error inesperado.'), 'error', true); } catch (_) {}
+});

@@ -7,4 +7,4 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: MAX_CONCURRENT_JOBS
-        value: "2"
+        value: "1"

@@ -16,11 +16,25 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
-async function api(url, options) {
-  const res = await fetch(url, options);
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
-  return data;
+async function api(url, options = {}) {
+  const controller = new AbortController();
+  const method = String(options.method || 'GET').toUpperCase();
+  const timeoutMs = method === 'POST' ? 35000 : 12000;
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(url, { ...options, signal: controller.signal });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+    return data;
+  } catch (err) {
+    if (err?.name === 'AbortError') {
+      throw new Error(`El servidor no respondió en ${Math.round(timeoutMs / 1000)} segundos.`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function initEditor() {

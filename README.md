@@ -57,6 +57,17 @@ git push -u origin main
 
 El servidor escucha en `0.0.0.0` y usa `process.env.PORT`, como requiere Render.
 
+## Diagnóstico en Render
+
+Esta versión registra cada petición `/api` y cada etapa del juez en **Render > Logs**. También incluye:
+
+- `GET /api/health` — confirma que el servicio está vivo.
+- `GET /api/diagnostics/compiler` — ejecuta `g++ --version` con timeout y confirma que el compilador puede iniciarse.
+- Timeout de compilación de 12 s, timeout por test de 3.5 s y timeout global de petición de 30 s.
+- El navegador cancela una petición POST si el servidor no responde en 35 s, por lo que la UI no queda indefinidamente en “Evaluando”.
+
+En los logs verás mensajes como `JUDGE ... iniciando g++`, `g++ terminó...` y `test N terminó...`.
+
 ## Estructura
 
 ```text
@@ -77,7 +88,7 @@ cpp-practice-judge/
 
 ## Seguridad importante
 
-Este proyecto baja privilegios para compilar y ejecutar como `nobody`, y aplica límites de tiempo, memoria, procesos, tamaño de salida y concurrencia, pero **no constituye un sandbox de seguridad fuerte**. El código C++ enviado por el navegador se ejecuta dentro del mismo contenedor del servicio.
+Este proyecto ejecuta todo el servicio como el usuario no privilegiado `node` dentro del contenedor y aplica límites de tiempo, memoria, procesos, tamaño de salida y concurrencia, pero **no constituye un sandbox de seguridad fuerte**. El código C++ enviado por el navegador se ejecuta dentro del mismo contenedor del servicio.
 
 Está pensado para práctica personal, demostraciones o un salón con usuarios de confianza. Si lo vas a abrir al público para ejecutar código arbitrario de personas desconocidas, cambia el runner por un sandbox dedicado como Judge0/nsjail o separa la ejecución en infraestructura aislada. No guardes secretos sensibles en el contenedor mientras uses este runner local.
 

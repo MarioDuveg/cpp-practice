@@ -117,6 +117,16 @@ ${cases}
 `;
 }
 
+function killProcessTree(child) {
+  if (!child || !child.pid) return;
+  try {
+    if (process.platform !== 'win32') process.kill(-child.pid, 'SIGKILL');
+    else child.kill('SIGKILL');
+  } catch (_) {
+    try { child.kill('SIGKILL'); } catch (_) {}
+  }
+}
+
 function runProcess(command, args, options = {}) {
   const timeoutMs = options.timeoutMs || 10000;
   const cwd = options.cwd;
@@ -126,20 +136,32 @@ function runProcess(command, args, options = {}) {
     let stderr = '';
     let overflow = false;
     let timedOut = false;
+    let settled = false;
 
-    const child = spawn(command, args, {
-      cwd,
-      env: { PATH: process.env.PATH || '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' },
-      detached: process.platform !== 'win32',
-      stdio: ['ignore', 'pipe', 'pipe']
-    });
+    const finish = (result) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve({ ...result, stdout, stderr, timedOut, overflow, elapsedMs: Date.now() - started });
+    };
+
+    let child;
+    try {
+      child = spawn(command, args, {
+        cwd,
+        env: { ...process.env, PATH: process.env.PATH || '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' },
+        detached: process.platform !== 'win32',
+        stdio: ['ignore', 'pipe', 'pipe']
+      });
+    } catch (err) {
+      return resolve({ code: -1, stdout: '', stderr: err.message, timedOut: false, overflow: false, elapsedMs: Date.now() - started });
+    }
 
     const timer = setTimeout(() => {
       timedOut = true;
-      try {
-        if (process.platform !== 'win32') process.kill(-child.pid, 'SIGKILL');
-        else child.kill('SIGKILL');
-      } catch (_) {}
+      killProcessTree(child);
+      // No dependemos de que 'close' llegue para responder al navegador.
+      setTimeout(() => finish({ code: -1, signal: 'SIGKILL' }), 150).unref();
     }, timeoutMs);
 
     const collect = (which) => (chunk) => {
@@ -148,55 +170,44 @@ function runProcess(command, args, options = {}) {
       else stderr += text;
       if (stdout.length + stderr.length > MAX_OUTPUT && !overflow) {
         overflow = true;
-        try {
-          if (process.platform !== 'win32') process.kill(-child.pid, 'SIGKILL');
-          else child.kill('SIGKILL');
-        } catch (_) {}
+        killProcessTree(child);
+        setTimeout(() => finish({ code: -1, signal: 'SIGKILL' }), 150).unref();
       }
     };
 
     child.stdout.on('data', collect('stdout'));
     child.stderr.on('data', collect('stderr'));
-
     child.on('error', (err) => {
-      clearTimeout(timer);
-      resolve({ code: -1, stdout, stderr: `${stderr}\n${err.message}`, timedOut, overflow, elapsedMs: Date.now() - started });
+      stderr += `\n${err.message}`;
+      finish({ code: -1 });
     });
-
-    child.on('close', (code, signal) => {
-      clearTimeout(timer);
-      resolve({ code, signal, stdout, stderr, timedOut, overflow, elapsedMs: Date.now() - started });
-    });
+    child.on('close', (code, signal) => finish({ code, signal }));
   });
 }
 
-async function judge(problem, userCode, mode = 'submit') {
+async function judge(problem, userCode, mode = 'submit', log = () => {}) {
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'cpp-judge-'));
   const sourcePath = path.join(tempDir, 'solution.cpp');
   const binaryPath = path.join(tempDir, 'solution');
 
   try {
+    log(`directorio temporal ${tempDir}`);
     await fs.writeFile(sourcePath, buildHarness(userCode, problem), 'utf8');
-    // El servidor corre como root solo para poder bajar privilegios del compilador/runner.
-    // El código no confiable se compila y ejecuta como nobody (uid/gid 65534).
-    await fs.chown(tempDir, 65534, 65534);
-    await fs.chown(sourcePath, 65534, 65534);
-    await fs.chmod(tempDir, 0o700);
-    await fs.chmod(sourcePath, 0o600);
 
-    const compile = await runProcess('setpriv', [
-      '--reuid=65534', '--regid=65534', '--clear-groups',
-      'g++', 'solution.cpp', '-std=c++17', '-O2', '-pipe', '-Wall', '-Wextra', '-o', 'solution'
-    ], { cwd: tempDir, timeoutMs: 20000 });
+    log('iniciando g++');
+    const compile = await runProcess('g++', [
+      sourcePath, '-std=c++17', '-O1', '-pipe', '-Wall', '-Wextra', '-o', binaryPath
+    ], { cwd: tempDir, timeoutMs: 12000 });
+    log(`g++ terminó code=${compile.code} timeout=${compile.timedOut} en ${compile.elapsedMs} ms`);
 
     if (compile.timedOut) {
-      return { status: 'Compile Timeout', compileError: 'La compilación excedió el límite de tiempo.', results: [] };
+      return { status: 'Compile Timeout', compileError: 'La compilación excedió 12 segundos.', results: [] };
     }
     if (compile.overflow) {
       return { status: 'Compile Error', compileError: 'La salida del compilador excedió el límite permitido.', results: [] };
     }
     if (compile.code !== 0) {
-      return { status: 'Compile Error', compileError: compile.stderr.slice(0, 16000), results: [] };
+      return { status: 'Compile Error', compileError: compile.stderr.slice(0, 16000) || 'g++ terminó con error.', results: [] };
     }
 
     const indexedTests = problem.tests.map((test, index) => ({ test, index }));
@@ -208,11 +219,16 @@ async function judge(problem, userCode, mode = 'submit') {
     let overall = 'Accepted';
 
     for (const { test, index } of selected) {
-      const runnerScript = 'ulimit -t 3 -v 262144 -f 2048 -n 32 -u 32 2>/dev/null || true; exec setpriv --reuid=65534 --regid=65534 --clear-groups timeout -s KILL 3s ./solution "$1"';
-      const run = await runProcess('bash', ['-lc', runnerScript, 'judge-runner', String(index)], {
+      log(`test ${index + 1} iniciado`);
+      // El contenedor completo corre como usuario no privilegiado (USER node).
+      // bash aplica límites básicos y timeout agrega una segunda barrera además
+      // del timeout de Node.
+      const runnerScript = 'ulimit -t 2 2>/dev/null || true; ulimit -v 262144 2>/dev/null || true; ulimit -f 2048 2>/dev/null || true; ulimit -n 64 2>/dev/null || true; ulimit -u 32 2>/dev/null || true; exec timeout -s KILL 3s "$1" "$2"';
+      const run = await runProcess('bash', ['-lc', runnerScript, 'judge-runner', binaryPath, String(index)], {
         cwd: tempDir,
-        timeoutMs: 4500
+        timeoutMs: 3500
       });
+      log(`test ${index + 1} terminó code=${run.code} timeout=${run.timedOut} en ${run.elapsedMs} ms`);
 
       let status = 'Accepted';
       let actual = '';
@@ -255,4 +271,15 @@ async function judge(problem, userCode, mode = 'submit') {
   }
 }
 
-module.exports = { judge };
+async function compilerDiagnostic() {
+  const result = await runProcess('g++', ['--version'], { timeoutMs: 3000 });
+  return {
+    ok: result.code === 0 && !result.timedOut,
+    code: result.code,
+    timedOut: result.timedOut,
+    elapsedMs: result.elapsedMs,
+    output: (result.stdout || result.stderr).split('\n')[0].slice(0, 300)
+  };
+}
+
+module.exports = { judge, compilerDiagnostic };

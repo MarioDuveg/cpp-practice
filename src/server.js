@@ -5,7 +5,7 @@ const problems = require('./problems.json');
 const { judge, compilerDiagnostic } = require('./judge');
 
 const app = express();
-const APP_VERSION = 'ui-v7';
+const APP_VERSION = 'ui-v9';
 app.set('etag', false);
 const PORT = Number(process.env.PORT || 10000);
 const MAX_CODE_LENGTH = 30000;

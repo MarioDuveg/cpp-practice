@@ -72,7 +72,7 @@ button { cursor: pointer; }
 .app-shell { height: calc(100vh - 62px); display: grid; grid-template-columns: var(--sidebar) 1fr; }
 .sidebar {
   min-width: 0; border-right: 1px solid var(--border); background: #141618;
-  display: flex; flex-direction: column; padding: 14px 12px;
+  display: flex; flex-direction: column; padding: 14px 12px; overflow: hidden;
 }
 .sidebar-head { display: flex; justify-content: space-between; align-items: center; padding: 0 4px 10px; }
 .sidebar h2 { margin: 0; font-size: 14px; }
@@ -88,7 +88,7 @@ button { cursor: pointer; }
   padding: 5px 8px; border-radius: 999px; font-size: 10px;
 }
 .filter-chip.active { color: var(--text); border-color: #606975; background: #25292e; }
-.problem-list { overflow-y: auto; min-height: 0; padding-right: 2px; }
+.problem-list { flex: 1 1 auto; overflow-y: auto; min-height: 0; max-height: 100%; padding-right: 4px; scrollbar-gutter: stable; overscroll-behavior: contain; }
 .problem-item {
   width: 100%; text-align: left; border: 0; border-radius: 7px;
   background: transparent; color: #cbd0d6; padding: 9px 9px; margin: 2px 0;

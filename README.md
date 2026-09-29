@@ -144,3 +144,8 @@ con timeout de 3.5 segundos, límite de salida y eliminación del grupo de proce
 
 Para verificar que Render desplegó esta versión, abre `/api/health`: debe incluir
 `"version":"fix-v4"`. La cabecera de la página también muestra `fix v4`.
+
+## Cambios UI v9
+
+- Las plantillas de todos los ejercicios de **Linked List** incluyen como comentario la definición exacta de `ListNode` usada por la plataforma.
+- El listado lateral de problemas tiene scroll vertical independiente para recorrer todos los ejercicios sin mover el editor.

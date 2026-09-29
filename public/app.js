@@ -6,6 +6,27 @@ let isJudging = false;
 
 const $ = (id) => document.getElementById(id);
 const storageKey = (id) => `cpp-practice-code:${id}`;
+const solvedStorageKey = 'cpp-practice-solved';
+
+function getSolvedProblems() {
+  try {
+    const value = JSON.parse(localStorage.getItem(solvedStorageKey) || '[]');
+    return new Set(Array.isArray(value) ? value : []);
+  } catch (_) {
+    return new Set();
+  }
+}
+
+function isProblemSolved(id) {
+  return getSolvedProblems().has(id);
+}
+
+function markProblemSolved(id) {
+  const solved = getSolvedProblems();
+  solved.add(id);
+  localStorage.setItem(solvedStorageKey, JSON.stringify([...solved]));
+  renderProblemList();
+}
 
 function escapeHtml(value) {
   return String(value)
@@ -160,7 +181,7 @@ function renderProblemList() {
   $('problemList').innerHTML = filtered.map((p) => `
     <button class="problem-item ${currentProblem?.id === p.id ? 'active' : ''}" data-id="${p.id}">
       <span class="title">${escapeHtml(p.title)}</span>
-      <span class="dot ${p.difficulty.toLowerCase()}"></span>
+      ${isProblemSolved(p.id) ? '<span class="solved-check" title="Resuelto" aria-label="Resuelto">✓</span>' : ''}
     </button>
   `).join('');
 
@@ -252,6 +273,9 @@ async function judge(mode) {
     const kind = result.status === 'Accepted' ? 'accepted' : 'error';
     setHeaderVerdict(result.status || 'Resultado', kind);
     renderResults(result, mode);
+    if (mode === 'submit' && result.status === 'Accepted') {
+      markProblemSolved(currentProblem.id);
+    }
   } catch (err) {
     console.error('[JUDGE FRONTEND ERROR]', err);
     $('verdict').className = 'verdict error';

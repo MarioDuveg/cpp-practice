@@ -97,9 +97,12 @@ button { cursor: pointer; }
 .problem-item:hover { background: #1d2024; }
 .problem-item.active { background: #262a2f; color: #fff; box-shadow: inset 3px 0 var(--accent); }
 .problem-item .title { font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
-.dot.easy { background: var(--green); }
-.dot.medium { background: var(--yellow); }
+.solved-check {
+  color: var(--green);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+}
 
 .workspace { min-width: 0; display: grid; grid-template-columns: minmax(360px, 42%) minmax(520px, 58%); height: 100%; }
 .problem-pane { overflow-y: auto; padding: 24px 26px 48px; border-right: 1px solid var(--border); background: var(--panel); }

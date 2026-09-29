@@ -127,3 +127,9 @@ Está pensado para práctica personal, demostraciones o un salón con usuarios d
 31. Baseball Game — Stack
 32. Number of Recent Calls — Queue
 33. Time Needed to Buy Tickets — Queue
+
+## Nota de rendimiento en Render Free
+
+El plan Free de Render tiene CPU muy limitada. Esta versión genera un header precompilado de C++ (`judge_pch.hpp.gch`) durante el Docker build y compila los envíos con `-O0`, de modo que el trabajo pesado de parsear STL no se repita en cada ejecución.
+
+Después de desplegar, abre `/api/diagnostics/compiler`. Debe mostrar `pchExists: true` y `compileTimedOut: false`. El campo `compileElapsedMs` indica cuánto tarda una compilación mínima real en esa instancia.

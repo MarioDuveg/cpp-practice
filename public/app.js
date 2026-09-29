@@ -19,7 +19,7 @@ function escapeHtml(value) {
 async function api(url, options = {}) {
   const controller = new AbortController();
   const method = String(options.method || 'GET').toUpperCase();
-  const timeoutMs = method === 'POST' ? 35000 : 12000;
+  const timeoutMs = method === 'POST' ? 60000 : 12000;
   const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {

@@ -6,6 +6,8 @@ const { spawn } = require('child_process');
 const RESULT_MARKER = '__CPP_PRACTICE_RESULT__';
 const MAX_OUTPUT = 64 * 1024;
 
+const PCH_HEADER = path.join(__dirname, 'judge_pch.hpp');
+
 function buildHarness(userCode, problem) {
   const cases = problem.tests.map((test, i) => `
     case ${i}: {
@@ -13,84 +15,9 @@ function buildHarness(userCode, problem) {
       break;
     }`).join('\n');
 
-  return `#include <bits/stdc++.h>
-using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode* n) : val(x), next(n) {}
-};
-
-static string ans(const string& v) { return v; }
-static string ans(const char* v) { return string(v); }
-static string ans(bool v) { return v ? "true" : "false"; }
-static string ans(int v) { return to_string(v); }
-static string ans(long v) { return to_string(v); }
-static string ans(long long v) { return to_string(v); }
-static string ans(unsigned int v) { return to_string(v); }
-static string ans(unsigned long v) { return to_string(v); }
-static string ans(unsigned long long v) { return to_string(v); }
-
-static string ans(const vector<int>& v) {
-    string out = "[";
-    for (size_t i = 0; i < v.size(); ++i) {
-        if (i) out += ",";
-        out += to_string(v[i]);
-    }
-    out += "]";
-    return out;
-}
-
-static ListNode* buildList(initializer_list<int> values) {
-    ListNode dummy;
-    ListNode* tail = &dummy;
-    for (int x : values) {
-        tail->next = new ListNode(x);
-        tail = tail->next;
-    }
-    return dummy.next;
-}
-
-static ListNode* nodeAt(ListNode* head, int index) {
-    while (head && index-- > 0) head = head->next;
-    return head;
-}
-
-static ListNode* appendShared(ListNode* prefix, ListNode* shared) {
-    if (!prefix) return shared;
-    ListNode* p = prefix;
-    while (p->next) p = p->next;
-    p->next = shared;
-    return prefix;
-}
-
-static ListNode* buildCycle(initializer_list<int> values, int pos) {
-    ListNode* head = buildList(values);
-    if (!head || pos < 0) return head;
-    ListNode* join = nodeAt(head, pos);
-    ListNode* tail = head;
-    while (tail->next) tail = tail->next;
-    tail->next = join;
-    return head;
-}
-
-static string ansList(ListNode* head) {
-    string out = "[";
-    unordered_set<ListNode*> seen;
-    int count = 0;
-    while (head) {
-        if (seen.count(head) || count++ > 10000) return "[cycle]";
-        seen.insert(head);
-        if (out.size() > 1) out += ",";
-        out += to_string(head->val);
-        head = head->next;
-    }
-    out += "]";
-    return out;
-}
+  // judge_pch.hpp.gch se construye durante el Docker build. GCC lo reutiliza
+  // automáticamente al incluir el header, evitando parsear STL en cada envío.
+  return `#include "${PCH_HEADER.replace(/\\/g, '\\\\')}"
 
 ${userCode}
 
@@ -196,12 +123,12 @@ async function judge(problem, userCode, mode = 'submit', log = () => {}) {
 
     log('iniciando g++');
     const compile = await runProcess('g++', [
-      sourcePath, '-std=c++17', '-O1', '-pipe', '-Wall', '-Wextra', '-o', binaryPath
-    ], { cwd: tempDir, timeoutMs: 12000 });
+      sourcePath, '-std=c++17', '-O0', '-pipe', '-w', '-o', binaryPath
+    ], { cwd: tempDir, timeoutMs: 45000 });
     log(`g++ terminó code=${compile.code} timeout=${compile.timedOut} en ${compile.elapsedMs} ms`);
 
     if (compile.timedOut) {
-      return { status: 'Compile Timeout', compileError: 'La compilación excedió 12 segundos.', results: [] };
+      return { status: 'Compile Timeout', compileError: 'La compilación excedió 45 segundos.', results: [] };
     }
     if (compile.overflow) {
       return { status: 'Compile Error', compileError: 'La salida del compilador excedió el límite permitido.', results: [] };
@@ -272,14 +199,32 @@ async function judge(problem, userCode, mode = 'submit', log = () => {}) {
 }
 
 async function compilerDiagnostic() {
-  const result = await runProcess('g++', ['--version'], { timeoutMs: 3000 });
-  return {
-    ok: result.code === 0 && !result.timedOut,
-    code: result.code,
-    timedOut: result.timedOut,
-    elapsedMs: result.elapsedMs,
-    output: (result.stdout || result.stderr).split('\n')[0].slice(0, 300)
-  };
+  const version = await runProcess('g++', ['--version'], { timeoutMs: 5000 });
+  let pchExists = false;
+  try { await fs.access(`${PCH_HEADER}.gch`); pchExists = true; } catch (_) {}
+
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'cpp-diag-'));
+  try {
+    const sourcePath = path.join(tempDir, 'diag.cpp');
+    const binaryPath = path.join(tempDir, 'diag');
+    await fs.writeFile(sourcePath, `#include "${PCH_HEADER.replace(/\\/g, '\\\\')}"\nint main(){ vector<int> v{1,2,3}; return v.size()==3 ? 0 : 1; }\n`, 'utf8');
+    const compile = await runProcess('g++', [sourcePath, '-std=c++17', '-O0', '-pipe', '-w', '-o', binaryPath], {
+      cwd: tempDir,
+      timeoutMs: 45000
+    });
+    return {
+      ok: version.code === 0 && !version.timedOut && compile.code === 0 && !compile.timedOut,
+      compiler: (version.stdout || version.stderr).split('\n')[0].slice(0, 300),
+      versionElapsedMs: version.elapsedMs,
+      pchExists,
+      compileCode: compile.code,
+      compileTimedOut: compile.timedOut,
+      compileElapsedMs: compile.elapsedMs,
+      compileError: compile.code === 0 ? null : compile.stderr.slice(0, 2000)
+    };
+  } finally {
+    await fs.rm(tempDir, { recursive: true, force: true }).catch(() => {});
+  }
 }
 
 module.exports = { judge, compilerDiagnostic };

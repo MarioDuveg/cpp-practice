@@ -87,7 +87,7 @@ app.post('/api/judge/:id', async (req, res) => {
   let watchdog;
   try {
     const hardTimeout = new Promise((_, reject) => {
-      watchdog = setTimeout(() => reject(new Error('JUDGE_HARD_TIMEOUT')), 30000);
+      watchdog = setTimeout(() => reject(new Error('JUDGE_HARD_TIMEOUT')), 55000);
     });
     const result = await Promise.race([judge(problem, code, mode, log), hardTimeout]);
     log(`fin status=${result.status}`);
@@ -97,7 +97,7 @@ app.post('/api/judge/:id', async (req, res) => {
     if (!res.headersSent) {
       const timeout = err?.message === 'JUDGE_HARD_TIMEOUT';
       res.status(timeout ? 504 : 500).json({
-        error: timeout ? 'El juez excedió el límite global de 30 segundos.' : 'Error interno del juez.'
+        error: timeout ? 'El juez excedió el límite global de 55 segundos.' : 'Error interno del juez.'
       });
     }
   } finally {

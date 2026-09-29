@@ -1,0 +1,1653 @@
+[
+  {
+    "id": "factorial",
+    "title": "Factorial recursivo",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa una función recursiva que calcule n! para un entero n no negativo. No uses ciclos.",
+    "constraints": [
+      "0 <= n <= 20",
+      "Usa recursión.",
+      "El resultado cabe en long long."
+    ],
+    "template": "class Solution {\npublic:\n    long long factorial(int n) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "n = 5",
+        "output": "120"
+      },
+      {
+        "input": "n = 0",
+        "output": "1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 0",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.factorial(0));",
+        "hidden": false
+      },
+      {
+        "input": "n = 1",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.factorial(1));",
+        "hidden": false
+      },
+      {
+        "input": "n = 5",
+        "expected": "120",
+        "code": "Solution s; __answer = ans(s.factorial(5));",
+        "hidden": false
+      },
+      {
+        "input": "n = 10",
+        "expected": "3628800",
+        "code": "Solution s; __answer = ans(s.factorial(10));",
+        "hidden": true
+      },
+      {
+        "input": "n = 20",
+        "expected": "2432902008176640000",
+        "code": "Solution s; __answer = ans(s.factorial(20));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "fibonacci",
+    "title": "Fibonacci recursivo",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa Fibonacci de forma recursiva, con F(0)=0 y F(1)=1.",
+    "constraints": [
+      "0 <= n <= 40 para los tests",
+      "Usa recursión."
+    ],
+    "template": "class Solution {\npublic:\n    long long fibonacci(int n) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "n = 6",
+        "output": "8"
+      },
+      {
+        "input": "n = 1",
+        "output": "1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 0",
+        "expected": "0",
+        "code": "Solution s; __answer = ans(s.fibonacci(0));",
+        "hidden": false
+      },
+      {
+        "input": "n = 1",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.fibonacci(1));",
+        "hidden": false
+      },
+      {
+        "input": "n = 6",
+        "expected": "8",
+        "code": "Solution s; __answer = ans(s.fibonacci(6));",
+        "hidden": false
+      },
+      {
+        "input": "n = 10",
+        "expected": "55",
+        "code": "Solution s; __answer = ans(s.fibonacci(10));",
+        "hidden": true
+      },
+      {
+        "input": "n = 20",
+        "expected": "6765",
+        "code": "Solution s; __answer = ans(s.fibonacci(20));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "brincos-recursivos",
+    "title": "Brincos recursivos",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Una persona sube una escalera de n escalones y en cada movimiento puede brincar 1 o 2 escalones. Regresa cuántas formas distintas existen de llegar exactamente al escalón n usando recursión.",
+    "constraints": [
+      "1 <= n <= 35",
+      "Solo brincos de 1 o 2 escalones."
+    ],
+    "template": "class Solution {\npublic:\n    long long brincos(int n) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "n = 3",
+        "output": "3"
+      },
+      {
+        "input": "n = 5",
+        "output": "8"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 1",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.brincos(1));",
+        "hidden": false
+      },
+      {
+        "input": "n = 2",
+        "expected": "2",
+        "code": "Solution s; __answer = ans(s.brincos(2));",
+        "hidden": false
+      },
+      {
+        "input": "n = 3",
+        "expected": "3",
+        "code": "Solution s; __answer = ans(s.brincos(3));",
+        "hidden": false
+      },
+      {
+        "input": "n = 5",
+        "expected": "8",
+        "code": "Solution s; __answer = ans(s.brincos(5));",
+        "hidden": true
+      },
+      {
+        "input": "n = 10",
+        "expected": "89",
+        "code": "Solution s; __answer = ans(s.brincos(10));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "suma-1-n",
+    "title": "Suma de 1 hasta n",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Escribe una función recursiva que reciba un entero positivo n y retorne la suma de los números del 1 hasta n.",
+    "constraints": [
+      "1 <= n <= 100000",
+      "Usa recursión."
+    ],
+    "template": "class Solution {\npublic:\n    long long sumaHastaN(int n) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "n = 5",
+        "output": "15"
+      },
+      {
+        "input": "n = 1",
+        "output": "1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 1",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.sumaHastaN(1));",
+        "hidden": false
+      },
+      {
+        "input": "n = 5",
+        "expected": "15",
+        "code": "Solution s; __answer = ans(s.sumaHastaN(5));",
+        "hidden": false
+      },
+      {
+        "input": "n = 10",
+        "expected": "55",
+        "code": "Solution s; __answer = ans(s.sumaHastaN(10));",
+        "hidden": false
+      },
+      {
+        "input": "n = 100",
+        "expected": "5050",
+        "code": "Solution s; __answer = ans(s.sumaHastaN(100));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "potencia-recursiva",
+    "title": "Potencia recursiva",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa una función recursiva que calcule base elevada a exponente. El exponente es un entero no negativo.",
+    "constraints": [
+      "-20 <= base <= 20",
+      "0 <= exponente <= 20"
+    ],
+    "template": "class Solution {\npublic:\n    long long potencia(long long base, int exponente) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "base = 2, exponente = 5",
+        "output": "32"
+      },
+      {
+        "input": "base = 7, exponente = 0",
+        "output": "1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "base = 2, exponente = 5",
+        "expected": "32",
+        "code": "Solution s; __answer = ans(s.potencia(2,5));",
+        "hidden": false
+      },
+      {
+        "input": "base = 7, exponente = 0",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.potencia(7,0));",
+        "hidden": false
+      },
+      {
+        "input": "base = -2, exponente = 3",
+        "expected": "-8",
+        "code": "Solution s; __answer = ans(s.potencia(-2,3));",
+        "hidden": false
+      },
+      {
+        "input": "base = 3, exponente = 8",
+        "expected": "6561",
+        "code": "Solution s; __answer = ans(s.potencia(3,8));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "suma-digitos",
+    "title": "Suma de dígitos",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Escribe una función recursiva que reciba un entero positivo y regrese la suma de sus dígitos. No conviertas el número a string.",
+    "constraints": [
+      "1 <= n <= 10^18",
+      "Usa división y módulo entre 10."
+    ],
+    "template": "class Solution {\npublic:\n    int sumaDigitos(long long n) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "n = 583",
+        "output": "16"
+      },
+      {
+        "input": "n = 9",
+        "output": "9"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 583",
+        "expected": "16",
+        "code": "Solution s; __answer = ans(s.sumaDigitos(583));",
+        "hidden": false
+      },
+      {
+        "input": "n = 9",
+        "expected": "9",
+        "code": "Solution s; __answer = ans(s.sumaDigitos(9));",
+        "hidden": false
+      },
+      {
+        "input": "n = 1002",
+        "expected": "3",
+        "code": "Solution s; __answer = ans(s.sumaDigitos(1002));",
+        "hidden": false
+      },
+      {
+        "input": "n = 999999",
+        "expected": "54",
+        "code": "Solution s; __answer = ans(s.sumaDigitos(999999));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "invertir-string",
+    "title": "Invertir String",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa una función recursiva que reciba un string y regrese otro string con los caracteres en orden inverso. Puedes usar s.substr(1).",
+    "constraints": [
+      "0 <= s.length() <= 2000",
+      "Usa recursión."
+    ],
+    "template": "class Solution {\npublic:\n    string invertir(string s) {\n        // Tu código aquí\n        return \"\";\n    }\n};",
+    "examples": [
+      {
+        "input": "s = \"hola\"",
+        "output": "\"aloh\""
+      },
+      {
+        "input": "s = \"abc\"",
+        "output": "\"cba\""
+      }
+    ],
+    "tests": [
+      {
+        "input": "s = \"hola\"",
+        "expected": "aloh",
+        "code": "Solution s; __answer = ans(s.invertir(\"hola\"));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"a\"",
+        "expected": "a",
+        "code": "Solution s; __answer = ans(s.invertir(\"a\"));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"abc\"",
+        "expected": "cba",
+        "code": "Solution s; __answer = ans(s.invertir(\"abc\"));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"recursion\"",
+        "expected": "noisrucer",
+        "code": "Solution s; __answer = ans(s.invertir(\"recursion\"));",
+        "hidden": true
+      },
+      {
+        "input": "s = \"\"",
+        "expected": "",
+        "code": "Solution s; __answer = ans(s.invertir(\"\"));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "conteo-unos",
+    "title": "Conteo de 1s",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Escribe una función recursiva que reciba un entero positivo y retorne cuántas veces aparece el dígito 1 en su representación decimal. No uses ciclos ni conviertas el número a cadena.",
+    "constraints": [
+      "1 <= n <= 10^18",
+      "No uses for/while.",
+      "No conviertas a string."
+    ],
+    "template": "class Solution {\npublic:\n    int cuentaUnos(long long n) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "n = 11101",
+        "output": "4"
+      },
+      {
+        "input": "n = 234",
+        "output": "0"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 1",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.cuentaUnos(1));",
+        "hidden": false
+      },
+      {
+        "input": "n = 234",
+        "expected": "0",
+        "code": "Solution s; __answer = ans(s.cuentaUnos(234));",
+        "hidden": false
+      },
+      {
+        "input": "n = 11101",
+        "expected": "4",
+        "code": "Solution s; __answer = ans(s.cuentaUnos(11101));",
+        "hidden": false
+      },
+      {
+        "input": "n = 101010",
+        "expected": "3",
+        "code": "Solution s; __answer = ans(s.cuentaUnos(101010));",
+        "hidden": true
+      },
+      {
+        "input": "n = 111111111",
+        "expected": "9",
+        "code": "Solution s; __answer = ans(s.cuentaUnos(111111111));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "palindromo-recursivo-string",
+    "title": "esPalindromo recursivo",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa esPalindromo de manera recursiva. Recibe un string y dos índices, izquierda y derecha, que indican los extremos que se comparan. Retorna true si los caracteres comprendidos entre ambos índices forman un palíndromo y false en caso contrario. El string original no debe modificarse.",
+    "constraints": [
+      "0 <= izquierda <= derecha < s.size()",
+      "Los índices corresponden a posiciones válidas del string.",
+      "Usa recursión; no necesitas modificar el string original."
+    ],
+    "template": "class Solution {\npublic:\n    bool esPalindromo(const string& s, int izquierda, int derecha) {\n        // Tu código aquí\n        return false;\n    }\n};",
+    "examples": [
+      {
+        "input": "s = \"radar\", izquierda = 0, derecha = 4",
+        "output": "true"
+      },
+      {
+        "input": "s = \"reconocer\", izquierda = 0, derecha = 8",
+        "output": "true"
+      },
+      {
+        "input": "s = \"hola\", izquierda = 0, derecha = 3",
+        "output": "false"
+      }
+    ],
+    "tests": [
+      {
+        "input": "s = \"radar\", izquierda = 0, derecha = 4",
+        "expected": "true",
+        "code": "Solution s; __answer = ans(s.esPalindromo(\"radar\", 0, 4));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"reconocer\", izquierda = 0, derecha = 8",
+        "expected": "true",
+        "code": "Solution s; __answer = ans(s.esPalindromo(\"reconocer\", 0, 8));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"hola\", izquierda = 0, derecha = 3",
+        "expected": "false",
+        "code": "Solution s; __answer = ans(s.esPalindromo(\"hola\", 0, 3));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"a\", izquierda = 0, derecha = 0",
+        "expected": "true",
+        "code": "Solution s; __answer = ans(s.esPalindromo(\"a\", 0, 0));",
+        "hidden": true
+      },
+      {
+        "input": "s = \"xradary\", izquierda = 1, derecha = 5",
+        "expected": "true",
+        "code": "Solution s; __answer = ans(s.esPalindromo(\"xradary\", 1, 5));",
+        "hidden": true
+      },
+      {
+        "input": "s = \"abca\", izquierda = 0, derecha = 3",
+        "expected": "false",
+        "code": "Solution s; __answer = ans(s.esPalindromo(\"abca\", 0, 3));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "maximo-recursivo",
+    "title": "Máximo recursivo en vector",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa maximo de manera recursiva. Recibe un vector de enteros y un entero positivo n, y regresa el número más grande dentro de los primeros n elementos. El contenido del vector no debe modificarse.",
+    "constraints": [
+      "El vector contiene al menos un elemento.",
+      "1 <= n <= nums.size()",
+      "Usa recursión y considera únicamente los primeros n elementos."
+    ],
+    "template": "class Solution {\npublic:\n    int maximo(const vector<int>& nums, int n) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = {4, 8, 2, 11, 3}, n = 5",
+        "output": "11"
+      },
+      {
+        "input": "nums = {10, 20, 3, 99}, n = 3",
+        "output": "20"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = {4, 8, 2, 11, 3}, n = 5",
+        "expected": "11",
+        "code": "Solution s; vector<int> nums{4,8,2,11,3}; __answer = ans(s.maximo(nums, 5));",
+        "hidden": false
+      },
+      {
+        "input": "nums = {-7, -2, -9}, n = 3",
+        "expected": "-2",
+        "code": "Solution s; vector<int> nums{-7,-2,-9}; __answer = ans(s.maximo(nums, 3));",
+        "hidden": false
+      },
+      {
+        "input": "nums = {5}, n = 1",
+        "expected": "5",
+        "code": "Solution s; vector<int> nums{5}; __answer = ans(s.maximo(nums, 1));",
+        "hidden": false
+      },
+      {
+        "input": "nums = {10, 20, 3, 99}, n = 3",
+        "expected": "20",
+        "code": "Solution s; vector<int> nums{10,20,3,99}; __answer = ans(s.maximo(nums, 3));",
+        "hidden": true
+      },
+      {
+        "input": "nums = {0, -1, 12, 12, 30}, n = 4",
+        "expected": "12",
+        "code": "Solution s; vector<int> nums{0,-1,12,12,30}; __answer = ans(s.maximo(nums, 4));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "mcd-euclides-recursivo",
+    "title": "MCD recursivo — Euclides",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa mcd de manera recursiva utilizando el algoritmo de Euclides. Recibe dos enteros positivos y devuelve su máximo común divisor. Los valores originales no se modifican.",
+    "constraints": [
+      "a > 0",
+      "b > 0",
+      "Usa el algoritmo de Euclides de forma recursiva."
+    ],
+    "template": "class Solution {\npublic:\n    int mcd(int a, int b) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "a = 48, b = 18",
+        "output": "6"
+      },
+      {
+        "input": "a = 17, b = 13",
+        "output": "1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "a = 48, b = 18",
+        "expected": "6",
+        "code": "Solution s; __answer = ans(s.mcd(48, 18));",
+        "hidden": false
+      },
+      {
+        "input": "a = 54, b = 24",
+        "expected": "6",
+        "code": "Solution s; __answer = ans(s.mcd(54, 24));",
+        "hidden": false
+      },
+      {
+        "input": "a = 17, b = 13",
+        "expected": "1",
+        "code": "Solution s; __answer = ans(s.mcd(17, 13));",
+        "hidden": false
+      },
+      {
+        "input": "a = 100, b = 10",
+        "expected": "10",
+        "code": "Solution s; __answer = ans(s.mcd(100, 10));",
+        "hidden": true
+      },
+      {
+        "input": "a = 270, b = 192",
+        "expected": "6",
+        "code": "Solution s; __answer = ans(s.mcd(270, 192));",
+        "hidden": true
+      },
+      {
+        "input": "a = 81, b = 27",
+        "expected": "27",
+        "code": "Solution s; __answer = ans(s.mcd(81, 27));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "contar-recursivo-vector",
+    "title": "Contar apariciones recursivamente",
+    "difficulty": "Easy",
+    "category": "Recursión",
+    "statement": "Implementa contar de manera recursiva. Recibe un vector de enteros, un índice desde el cual iniciar la búsqueda y un valor objetivo. Regresa cuántas veces aparece el objetivo desde ese índice hasta el final del vector. El vector no debe modificarse.",
+    "constraints": [
+      "El vector contiene al menos un elemento.",
+      "0 <= indice < nums.size()",
+      "Usa recursión; el caso recursivo debe avanzar el índice."
+    ],
+    "template": "class Solution {\npublic:\n    int contar(const vector<int>& nums, int indice, int objetivo) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = {3, 2, 3, 5, 3}, indice = 0, objetivo = 3",
+        "output": "3"
+      },
+      {
+        "input": "nums = {4, 5, 6}, indice = 0, objetivo = 2",
+        "output": "0"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = {3, 2, 3, 5, 3}, indice = 0, objetivo = 3",
+        "expected": "3",
+        "code": "Solution s; vector<int> nums{3,2,3,5,3}; __answer = ans(s.contar(nums, 0, 3));",
+        "hidden": false
+      },
+      {
+        "input": "nums = {1, 1, 1}, indice = 0, objetivo = 1",
+        "expected": "3",
+        "code": "Solution s; vector<int> nums{1,1,1}; __answer = ans(s.contar(nums, 0, 1));",
+        "hidden": false
+      },
+      {
+        "input": "nums = {4, 5, 6}, indice = 0, objetivo = 2",
+        "expected": "0",
+        "code": "Solution s; vector<int> nums{4,5,6}; __answer = ans(s.contar(nums, 0, 2));",
+        "hidden": false
+      },
+      {
+        "input": "nums = {3, 2, 3, 5, 3}, indice = 2, objetivo = 3",
+        "expected": "2",
+        "code": "Solution s; vector<int> nums{3,2,3,5,3}; __answer = ans(s.contar(nums, 2, 3));",
+        "hidden": true
+      },
+      {
+        "input": "nums = {7}, indice = 0, objetivo = 7",
+        "expected": "1",
+        "code": "Solution s; vector<int> nums{7}; __answer = ans(s.contar(nums, 0, 7));",
+        "hidden": true
+      },
+      {
+        "input": "nums = {2, 4, 2, 2, 9, 2}, indice = 3, objetivo = 2",
+        "expected": "2",
+        "code": "Solution s; vector<int> nums{2,4,2,2,9,2}; __answer = ans(s.contar(nums, 3, 2));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "subset-sum",
+    "title": "Subset Sum",
+    "difficulty": "Medium",
+    "category": "Recursión / Backtracking",
+    "statement": "Dado un arreglo de enteros y un objetivo T, determina si existe algún subconjunto cuya suma sea exactamente T. Cada elemento puede incluirse o no una sola vez.",
+    "constraints": [
+      "1 <= nums.size() <= 24",
+      "-100 <= nums[i] <= 100",
+      "-500 <= target <= 500"
+    ],
+    "template": "class Solution {\npublic:\n    bool subsetSum(vector<int>& nums, int target) {\n        // Tu código aquí\n        return false;\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = [3, 34, 4, 12, 5, 2], target = 9",
+        "output": "true"
+      },
+      {
+        "input": "nums = [3, 34, 4, 12, 5, 2], target = 30",
+        "output": "false"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [3,34,4,12,5,2], target = 9",
+        "expected": "true",
+        "code": "vector<int> v{3,34,4,12,5,2}; Solution s; __answer = ans(s.subsetSum(v,9));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [3,34,4,12,5,2], target = 30",
+        "expected": "false",
+        "code": "vector<int> v{3,34,4,12,5,2}; Solution s; __answer = ans(s.subsetSum(v,30));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,2,3,7], target = 6",
+        "expected": "true",
+        "code": "vector<int> v{1,2,3,7}; Solution s; __answer = ans(s.subsetSum(v,6));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [8,-3,4,2], target = 1",
+        "expected": "true",
+        "code": "vector<int> v{8,-3,4,2}; Solution s; __answer = ans(s.subsetSum(v,1));",
+        "hidden": true
+      },
+      {
+        "input": "nums = [10,20,30], target = 15",
+        "expected": "false",
+        "code": "vector<int> v{10,20,30}; Solution s; __answer = ans(s.subsetSum(v,15));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "binary-search",
+    "title": "Búsqueda binaria clásica",
+    "difficulty": "Easy",
+    "category": "Búsqueda binaria",
+    "statement": "Dado un arreglo ordenado ascendentemente y un target, regresa el índice del target. Si no existe, regresa -1. La solución debe ser O(log n).",
+    "constraints": [
+      "1 <= nums.size() <= 100000",
+      "nums está ordenado y no tiene duplicados."
+    ],
+    "template": "class Solution {\npublic:\n    int binarySearch(vector<int>& nums, int target) {\n        // Tu código aquí\n        return -1;\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 9",
+        "output": "4"
+      },
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 2",
+        "output": "-1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 9",
+        "expected": "4",
+        "code": "vector<int> v{-1,0,3,5,9,12}; Solution s; __answer = ans(s.binarySearch(v,9));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 2",
+        "expected": "-1",
+        "code": "vector<int> v{-1,0,3,5,9,12}; Solution s; __answer = ans(s.binarySearch(v,2));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [5], target = 5",
+        "expected": "0",
+        "code": "vector<int> v{5}; Solution s; __answer = ans(s.binarySearch(v,5));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,3,7,11,18], target = 1",
+        "expected": "0",
+        "code": "vector<int> v{1,3,7,11,18}; Solution s; __answer = ans(s.binarySearch(v,1));",
+        "hidden": true
+      },
+      {
+        "input": "nums = [1,3,7,11,18], target = 18",
+        "expected": "4",
+        "code": "vector<int> v{1,3,7,11,18}; Solution s; __answer = ans(s.binarySearch(v,18));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "search-insert",
+    "title": "Posición de inserción",
+    "difficulty": "Easy",
+    "category": "Búsqueda binaria",
+    "statement": "Dado un arreglo ordenado sin duplicados y un target, regresa su índice si existe; de lo contrario, regresa el índice donde debería insertarse para conservar el orden. Debe ser O(log n).",
+    "constraints": [
+      "1 <= nums.size() <= 100000"
+    ],
+    "template": "class Solution {\npublic:\n    int searchInsert(vector<int>& nums, int target) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = [1,3,5,6], target = 5",
+        "output": "2"
+      },
+      {
+        "input": "nums = [1,3,5,6], target = 2",
+        "output": "1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [1,3,5,6], target = 5",
+        "expected": "2",
+        "code": "vector<int> v{1,3,5,6}; Solution s; __answer = ans(s.searchInsert(v,5));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,3,5,6], target = 2",
+        "expected": "1",
+        "code": "vector<int> v{1,3,5,6}; Solution s; __answer = ans(s.searchInsert(v,2));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,3,5,6], target = 7",
+        "expected": "4",
+        "code": "vector<int> v{1,3,5,6}; Solution s; __answer = ans(s.searchInsert(v,7));",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,3,5,6], target = 0",
+        "expected": "0",
+        "code": "vector<int> v{1,3,5,6}; Solution s; __answer = ans(s.searchInsert(v,0));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "sort-01",
+    "title": "Ordenar 0 y 1 en tiempo lineal",
+    "difficulty": "Easy",
+    "category": "Arreglos",
+    "statement": "Ordena in-place un arreglo que contiene solamente 0 y 1. La solución debe ejecutarse en O(n).",
+    "constraints": [
+      "1 <= nums.size() <= 100000",
+      "nums[i] es 0 o 1."
+    ],
+    "template": "class Solution {\npublic:\n    void sortZeroOne(vector<int>& nums) {\n        // Tu código aquí\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = [1,0,1,0,0,1]",
+        "output": "[0,0,0,1,1,1]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [1,0,1,0,0,1]",
+        "expected": "[0,0,0,1,1,1]",
+        "code": "vector<int> v{1,0,1,0,0,1}; Solution s; s.sortZeroOne(v); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [0,0,1,1]",
+        "expected": "[0,0,1,1]",
+        "code": "vector<int> v{0,0,1,1}; Solution s; s.sortZeroOne(v); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,1,1]",
+        "expected": "[1,1,1]",
+        "code": "vector<int> v{1,1,1}; Solution s; s.sortZeroOne(v); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,0]",
+        "expected": "[0,1]",
+        "code": "vector<int> v{1,0}; Solution s; s.sortZeroOne(v); __answer = ans(v);",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "sort-012",
+    "title": "Ordenar 0, 1 y 2 en tiempo lineal",
+    "difficulty": "Medium",
+    "category": "Arreglos",
+    "statement": "Ordena in-place un arreglo que contiene solamente 0, 1 y 2 en una sola pasada lineal. Puedes usar la estrategia Dutch National Flag.",
+    "constraints": [
+      "1 <= nums.size() <= 100000",
+      "nums[i] pertenece a {0,1,2}."
+    ],
+    "template": "class Solution {\npublic:\n    void sortZeroOneTwo(vector<int>& nums) {\n        // Tu código aquí\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = [2,0,2,1,1,0]",
+        "output": "[0,0,1,1,2,2]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [2,0,2,1,1,0]",
+        "expected": "[0,0,1,1,2,2]",
+        "code": "vector<int> v{2,0,2,1,1,0}; Solution s; s.sortZeroOneTwo(v); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [2,0,1]",
+        "expected": "[0,1,2]",
+        "code": "vector<int> v{2,0,1}; Solution s; s.sortZeroOneTwo(v); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [0]",
+        "expected": "[0]",
+        "code": "vector<int> v{0}; Solution s; s.sortZeroOneTwo(v); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [2,2,1,0,0,1,2]",
+        "expected": "[0,0,1,1,2,2,2]",
+        "code": "vector<int> v{2,2,1,0,0,1,2}; Solution s; s.sortZeroOneTwo(v); __answer = ans(v);",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "sort-k",
+    "title": "Ordenar valores 0..k-1",
+    "difficulty": "Medium",
+    "category": "Arreglos",
+    "statement": "Dado un arreglo cuyos valores están en el rango 0..k-1, ordénalo en O(n + k) usando conteo de frecuencias.",
+    "constraints": [
+      "1 <= nums.size() <= 100000",
+      "1 <= k <= 10000",
+      "0 <= nums[i] < k"
+    ],
+    "template": "class Solution {\npublic:\n    void sortK(vector<int>& nums, int k) {\n        // Tu código aquí\n    }\n};",
+    "examples": [
+      {
+        "input": "nums = [3,1,2,3,0,1], k = 4",
+        "output": "[0,1,1,2,3,3]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [3,1,2,3,0,1], k = 4",
+        "expected": "[0,1,1,2,3,3]",
+        "code": "vector<int> v{3,1,2,3,0,1}; Solution s; s.sortK(v,4); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [0,0,0], k = 1",
+        "expected": "[0,0,0]",
+        "code": "vector<int> v{0,0,0}; Solution s; s.sortK(v,1); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [4,2,4,1,0,3], k = 5",
+        "expected": "[0,1,2,3,4,4]",
+        "code": "vector<int> v{4,2,4,1,0,3}; Solution s; s.sortK(v,5); __answer = ans(v);",
+        "hidden": false
+      },
+      {
+        "input": "nums = [5,1,5,2,2,0], k = 6",
+        "expected": "[0,1,2,2,5,5]",
+        "code": "vector<int> v{5,1,5,2,2,0}; Solution s; s.sortK(v,6); __answer = ans(v);",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "reverse-linked-list",
+    "title": "Reverse Linked List",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Invierte una lista enlazada simple y regresa la nueva cabeza.",
+    "constraints": [
+      "0 <= número de nodos <= 5000"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    ListNode* reverseList(ListNode* head) {\n        // Tu código aquí\n        return head;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [1,2,3]",
+        "output": "[3,2,1]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [1,2,3]",
+        "expected": "[3,2,1]",
+        "code": "ListNode* h=buildList({1,2,3}); Solution s; __answer = ansList(s.reverseList(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2]",
+        "expected": "[2,1]",
+        "code": "ListNode* h=buildList({1,2}); Solution s; __answer = ansList(s.reverseList(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = []",
+        "expected": "[]",
+        "code": "ListNode* h=nullptr; Solution s; __answer = ansList(s.reverseList(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2,3,4,5]",
+        "expected": "[5,4,3,2,1]",
+        "code": "ListNode* h=buildList({1,2,3,4,5}); Solution s; __answer = ansList(s.reverseList(h));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "merge-two-sorted-lists",
+    "title": "Merge Two Sorted Lists",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Fusiona dos listas enlazadas ordenadas ascendentemente y regresa la cabeza de una sola lista ordenada.",
+    "constraints": [
+      "0 <= nodos totales <= 10000"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {\n        // Tu código aquí\n        return nullptr;\n    }\n};",
+    "examples": [
+      {
+        "input": "list1 = [1,2,4], list2 = [1,3,4]",
+        "output": "[1,1,2,3,4,4]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "list1 = [1,2,4], list2 = [1,3,4]",
+        "expected": "[1,1,2,3,4,4]",
+        "code": "ListNode* a=buildList({1,2,4}); ListNode* b=buildList({1,3,4}); Solution s; __answer = ansList(s.mergeTwoLists(a,b));",
+        "hidden": false
+      },
+      {
+        "input": "list1 = [], list2 = []",
+        "expected": "[]",
+        "code": "Solution s; __answer = ansList(s.mergeTwoLists(nullptr,nullptr));",
+        "hidden": false
+      },
+      {
+        "input": "list1 = [], list2 = [0]",
+        "expected": "[0]",
+        "code": "ListNode* b=buildList({0}); Solution s; __answer = ansList(s.mergeTwoLists(nullptr,b));",
+        "hidden": false
+      },
+      {
+        "input": "list1 = [-3,2,8], list2 = [-2,1,9]",
+        "expected": "[-3,-2,1,2,8,9]",
+        "code": "ListNode* a=buildList({-3,2,8}); ListNode* b=buildList({-2,1,9}); Solution s; __answer = ansList(s.mergeTwoLists(a,b));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "linked-list-cycle",
+    "title": "Linked List Cycle",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Determina si una lista enlazada contiene un ciclo. Se recomienda usar dos punteros (slow/fast) y O(1) memoria adicional.",
+    "constraints": [
+      "0 <= nodos <= 10000"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    bool hasCycle(ListNode* head) {\n        // Tu código aquí\n        return false;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [3,2,0,-4], pos = 1",
+        "output": "true"
+      },
+      {
+        "input": "head = [1], pos = -1",
+        "output": "false"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [3,2,0,-4], pos = 1",
+        "expected": "true",
+        "code": "ListNode* h=buildCycle({3,2,0,-4},1); Solution s; __answer = ans(s.hasCycle(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2], pos = 0",
+        "expected": "true",
+        "code": "ListNode* h=buildCycle({1,2},0); Solution s; __answer = ans(s.hasCycle(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1], pos = -1",
+        "expected": "false",
+        "code": "ListNode* h=buildCycle({1},-1); Solution s; __answer = ans(s.hasCycle(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [], pos = -1",
+        "expected": "false",
+        "code": "Solution s; __answer = ans(s.hasCycle(nullptr));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "middle-linked-list",
+    "title": "Middle of the Linked List",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Regresa el nodo central de una lista. Si hay dos nodos centrales, regresa el segundo. Usa dos punteros.",
+    "constraints": [
+      "1 <= nodos <= 10000"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    ListNode* middleNode(ListNode* head) {\n        // Tu código aquí\n        return head;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [1,2,3,4,5]",
+        "output": "[3,4,5]"
+      },
+      {
+        "input": "head = [1,2,3,4,5,6]",
+        "output": "[4,5,6]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [1,2,3,4,5]",
+        "expected": "[3,4,5]",
+        "code": "ListNode* h=buildList({1,2,3,4,5}); Solution s; __answer = ansList(s.middleNode(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2,3,4,5,6]",
+        "expected": "[4,5,6]",
+        "code": "ListNode* h=buildList({1,2,3,4,5,6}); Solution s; __answer = ansList(s.middleNode(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [7]",
+        "expected": "[7]",
+        "code": "ListNode* h=buildList({7}); Solution s; __answer = ansList(s.middleNode(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2]",
+        "expected": "[2]",
+        "code": "ListNode* h=buildList({1,2}); Solution s; __answer = ansList(s.middleNode(h));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "remove-duplicates-sorted-list",
+    "title": "Remove Duplicates from Sorted List",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Dada una lista ordenada, elimina duplicados consecutivos para que cada valor aparezca una sola vez.",
+    "constraints": [
+      "0 <= nodos <= 10000",
+      "La lista está ordenada."
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    ListNode* deleteDuplicates(ListNode* head) {\n        // Tu código aquí\n        return head;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [1,1,2,3,3]",
+        "output": "[1,2,3]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [1,1,2,3,3]",
+        "expected": "[1,2,3]",
+        "code": "ListNode* h=buildList({1,1,2,3,3}); Solution s; __answer = ansList(s.deleteDuplicates(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,1,1]",
+        "expected": "[1]",
+        "code": "ListNode* h=buildList({1,1,1}); Solution s; __answer = ansList(s.deleteDuplicates(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2,3]",
+        "expected": "[1,2,3]",
+        "code": "ListNode* h=buildList({1,2,3}); Solution s; __answer = ansList(s.deleteDuplicates(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = []",
+        "expected": "[]",
+        "code": "Solution s; __answer = ansList(s.deleteDuplicates(nullptr));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "remove-linked-list-elements",
+    "title": "Remove Linked List Elements",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Elimina todos los nodos cuyo valor sea val y regresa la nueva cabeza.",
+    "constraints": [
+      "0 <= nodos <= 10000"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    ListNode* removeElements(ListNode* head, int val) {\n        // Tu código aquí\n        return head;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [1,2,6,3,4,5,6], val = 6",
+        "output": "[1,2,3,4,5]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [1,2,6,3,4,5,6], val = 6",
+        "expected": "[1,2,3,4,5]",
+        "code": "ListNode* h=buildList({1,2,6,3,4,5,6}); Solution s; __answer = ansList(s.removeElements(h,6));",
+        "hidden": false
+      },
+      {
+        "input": "head = [], val = 1",
+        "expected": "[]",
+        "code": "Solution s; __answer = ansList(s.removeElements(nullptr,1));",
+        "hidden": false
+      },
+      {
+        "input": "head = [7,7,7], val = 7",
+        "expected": "[]",
+        "code": "ListNode* h=buildList({7,7,7}); Solution s; __answer = ansList(s.removeElements(h,7));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2,3], val = 9",
+        "expected": "[1,2,3]",
+        "code": "ListNode* h=buildList({1,2,3}); Solution s; __answer = ansList(s.removeElements(h,9));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "delete-node-linked-list",
+    "title": "Delete Node in a Linked List",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Elimina un nodo de una lista enlazada teniendo acceso solamente a ese nodo. El nodo dado no será el último.",
+    "constraints": [
+      "La lista tiene al menos 2 nodos.",
+      "El nodo a eliminar no es la cola."
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    void deleteNode(ListNode* node) {\n        // Tu código aquí\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [4,5,1,9], node = 5",
+        "output": "[4,1,9]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [4,5,1,9], nodeIndex = 1",
+        "expected": "[4,1,9]",
+        "code": "ListNode* h=buildList({4,5,1,9}); ListNode* n=nodeAt(h,1); Solution s; s.deleteNode(n); __answer = ansList(h);",
+        "hidden": false
+      },
+      {
+        "input": "head = [4,5,1,9], nodeIndex = 2",
+        "expected": "[4,5,9]",
+        "code": "ListNode* h=buildList({4,5,1,9}); ListNode* n=nodeAt(h,2); Solution s; s.deleteNode(n); __answer = ansList(h);",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2], nodeIndex = 0",
+        "expected": "[2]",
+        "code": "ListNode* h=buildList({1,2}); ListNode* n=nodeAt(h,0); Solution s; s.deleteNode(n); __answer = ansList(h);",
+        "hidden": false
+      },
+      {
+        "input": "head = [7,8,9,10,11], nodeIndex = 3",
+        "expected": "[7,8,9,11]",
+        "code": "ListNode* h=buildList({7,8,9,10,11}); ListNode* n=nodeAt(h,3); Solution s; s.deleteNode(n); __answer = ansList(h);",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "intersection-two-linked-lists",
+    "title": "Intersection of Two Linked Lists",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Dadas las cabezas de dos listas, regresa el nodo donde ambas empiezan a compartir exactamente la misma estructura. Si no se intersectan, regresa nullptr.",
+    "constraints": [
+      "No modifiques las listas.",
+      "Busca O(n+m) tiempo y O(1) memoria adicional."
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {\n        // Tu código aquí\n        return nullptr;\n    }\n};",
+    "examples": [
+      {
+        "input": "A = [4,1] + [8,4,5], B = [5,6,1] + [8,4,5]",
+        "output": "nodo con valor 8"
+      }
+    ],
+    "tests": [
+      {
+        "input": "A=[4,1]+shared[8,4,5], B=[5,6,1]+shared",
+        "expected": "true",
+        "code": "ListNode* sh=buildList({8,4,5}); ListNode* a=appendShared(buildList({4,1}),sh); ListNode* b=appendShared(buildList({5,6,1}),sh); Solution s; __answer=ans(s.getIntersectionNode(a,b)==sh);",
+        "hidden": false,
+        "publicExpected": "nodo compartido 8"
+      },
+      {
+        "input": "A=[1,9,1]+shared[2,4], B=[3]+shared",
+        "expected": "true",
+        "code": "ListNode* sh=buildList({2,4}); ListNode* a=appendShared(buildList({1,9,1}),sh); ListNode* b=appendShared(buildList({3}),sh); Solution s; __answer=ans(s.getIntersectionNode(a,b)==sh);",
+        "hidden": false,
+        "publicExpected": "nodo compartido 2"
+      },
+      {
+        "input": "A=[2,6,4], B=[1,5]",
+        "expected": "true",
+        "code": "ListNode* a=buildList({2,6,4}); ListNode* b=buildList({1,5}); Solution s; __answer=ans(s.getIntersectionNode(a,b)==nullptr);",
+        "hidden": false,
+        "publicExpected": "nullptr"
+      },
+      {
+        "input": "A=shared[7,8], B=shared[7,8]",
+        "expected": "true",
+        "code": "ListNode* sh=buildList({7,8}); Solution s; __answer=ans(s.getIntersectionNode(sh,sh)==sh);",
+        "hidden": true,
+        "publicExpected": "misma cabeza"
+      }
+    ]
+  },
+  {
+    "id": "palindrome-linked-list",
+    "title": "Palindrome Linked List",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Determina si los valores de una lista forman un palíndromo. La solución óptima usa O(n) tiempo y O(1) memoria adicional.",
+    "constraints": [
+      "0 <= nodos <= 10000"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    bool isPalindrome(ListNode* head) {\n        // Tu código aquí\n        return false;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [1,2,2,1]",
+        "output": "true"
+      },
+      {
+        "input": "head = [1,2]",
+        "output": "false"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [1,2,2,1]",
+        "expected": "true",
+        "code": "ListNode* h=buildList({1,2,2,1}); Solution s; __answer=ans(s.isPalindrome(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2]",
+        "expected": "false",
+        "code": "ListNode* h=buildList({1,2}); Solution s; __answer=ans(s.isPalindrome(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1]",
+        "expected": "true",
+        "code": "ListNode* h=buildList({1}); Solution s; __answer=ans(s.isPalindrome(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2,3,2,1]",
+        "expected": "true",
+        "code": "ListNode* h=buildList({1,2,3,2,1}); Solution s; __answer=ans(s.isPalindrome(h));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "remove-nth-from-end",
+    "title": "Remove Nth Node From End",
+    "difficulty": "Medium",
+    "category": "Linked List",
+    "statement": "Elimina el nodo número n contando desde el final de la lista y regresa la cabeza. Intenta resolverlo en una sola pasada con dos punteros.",
+    "constraints": [
+      "1 <= nodos <= 10000",
+      "1 <= n <= número de nodos"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    ListNode* removeNthFromEnd(ListNode* head, int n) {\n        // Tu código aquí\n        return head;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [1,2,3,4,5], n = 2",
+        "output": "[1,2,3,5]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [1,2,3,4,5], n = 2",
+        "expected": "[1,2,3,5]",
+        "code": "ListNode* h=buildList({1,2,3,4,5}); Solution s; __answer=ansList(s.removeNthFromEnd(h,2));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1], n = 1",
+        "expected": "[]",
+        "code": "ListNode* h=buildList({1}); Solution s; __answer=ansList(s.removeNthFromEnd(h,1));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2], n = 1",
+        "expected": "[1]",
+        "code": "ListNode* h=buildList({1,2}); Solution s; __answer=ansList(s.removeNthFromEnd(h,1));",
+        "hidden": false
+      },
+      {
+        "input": "head = [1,2,3], n = 3",
+        "expected": "[2,3]",
+        "code": "ListNode* h=buildList({1,2,3}); Solution s; __answer=ansList(s.removeNthFromEnd(h,3));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "sum-linked-list",
+    "title": "Sumar elementos de Linked List",
+    "difficulty": "Easy",
+    "category": "Linked List",
+    "statement": "Recorre una lista enlazada y regresa la suma de los valores de todos sus nodos.",
+    "constraints": [
+      "0 <= nodos <= 10000",
+      "-1000 <= valor <= 1000"
+    ],
+    "template": "// ListNode ya está definido por la plataforma.\nclass Solution {\npublic:\n    long long sumList(ListNode* head) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "head = [1,2,3,4]",
+        "output": "10"
+      },
+      {
+        "input": "head = []",
+        "output": "0"
+      }
+    ],
+    "tests": [
+      {
+        "input": "head = [1,2,3,4]",
+        "expected": "10",
+        "code": "ListNode* h=buildList({1,2,3,4}); Solution s; __answer=ans(s.sumList(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = []",
+        "expected": "0",
+        "code": "Solution s; __answer=ans(s.sumList(nullptr));",
+        "hidden": false
+      },
+      {
+        "input": "head = [-1,5,-2]",
+        "expected": "2",
+        "code": "ListNode* h=buildList({-1,5,-2}); Solution s; __answer=ans(s.sumList(h));",
+        "hidden": false
+      },
+      {
+        "input": "head = [100,200,300]",
+        "expected": "600",
+        "code": "ListNode* h=buildList({100,200,300}); Solution s; __answer=ans(s.sumList(h));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "valid-parentheses",
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "category": "Stacks & Queues",
+    "statement": "Dado un string que contiene únicamente los caracteres (), [], {}, determina si cada símbolo de apertura se cierra con el mismo tipo de símbolo y en el orden correcto. Usa una pila para mantener los símbolos pendientes.",
+    "constraints": [
+      "1 <= s.length() <= 10000",
+      "s contiene únicamente '(', ')', '[', ']', '{', '}'"
+    ],
+    "template": "class Solution {\npublic:\n    bool isValid(string s) {\n        // Tu código aquí\n        return false;\n    }\n};",
+    "examples": [
+      {
+        "input": "s = \"({[]})\"",
+        "output": "true"
+      },
+      {
+        "input": "s = \"(]\"",
+        "output": "false"
+      }
+    ],
+    "tests": [
+      {
+        "input": "s = \"()\"",
+        "expected": "true",
+        "code": "Solution s; __answer=ans(s.isValid(\"()\"));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"()[]{}\"",
+        "expected": "true",
+        "code": "Solution s; __answer=ans(s.isValid(\"()[]{}\"));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"(]\"",
+        "expected": "false",
+        "code": "Solution s; __answer=ans(s.isValid(\"(]\"));",
+        "hidden": false
+      },
+      {
+        "input": "s = \"({[]})\"",
+        "expected": "true",
+        "code": "Solution s; __answer=ans(s.isValid(\"({[]})\"));",
+        "hidden": true
+      },
+      {
+        "input": "s = \"([)]\"",
+        "expected": "false",
+        "code": "Solution s; __answer=ans(s.isValid(\"([)]\"));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "baseball-game",
+    "title": "Baseball Game",
+    "difficulty": "Easy",
+    "category": "Stacks & Queues",
+    "statement": "Procesa una secuencia de operaciones de puntuación. Un entero agrega una nueva puntuación; C elimina la puntuación anterior; D agrega el doble de la anterior; + agrega la suma de las dos puntuaciones anteriores. Regresa la suma final de las puntuaciones válidas.",
+    "constraints": [
+      "1 <= operations.size() <= 1000",
+      "Las operaciones siempre son válidas según las reglas del problema"
+    ],
+    "template": "class Solution {\npublic:\n    int calPoints(vector<string>& operations) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "operations = [\"5\",\"2\",\"C\",\"D\",\"+\"]",
+        "output": "30"
+      }
+    ],
+    "tests": [
+      {
+        "input": "operations = [\"5\",\"2\",\"C\",\"D\",\"+\"]",
+        "expected": "30",
+        "code": "vector<string> v={\"5\",\"2\",\"C\",\"D\",\"+\"}; Solution s; __answer=ans(s.calPoints(v));",
+        "hidden": false
+      },
+      {
+        "input": "operations = [\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"]",
+        "expected": "27",
+        "code": "vector<string> v={\"5\",\"-2\",\"4\",\"C\",\"D\",\"9\",\"+\",\"+\"}; Solution s; __answer=ans(s.calPoints(v));",
+        "hidden": false
+      },
+      {
+        "input": "operations = [\"1\",\"C\"]",
+        "expected": "0",
+        "code": "vector<string> v={\"1\",\"C\"}; Solution s; __answer=ans(s.calPoints(v));",
+        "hidden": false
+      },
+      {
+        "input": "operations = [\"10\",\"20\",\"+\",\"D\"]",
+        "expected": "120",
+        "code": "vector<string> v={\"10\",\"20\",\"+\",\"D\"}; Solution s; __answer=ans(s.calPoints(v));",
+        "hidden": true
+      },
+      {
+        "input": "operations = [\"7\",\"D\",\"+\"]",
+        "expected": "42",
+        "code": "vector<string> v={\"7\",\"D\",\"+\"}; Solution s; __answer=ans(s.calPoints(v));",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "recent-calls",
+    "title": "Number of Recent Calls",
+    "difficulty": "Easy",
+    "category": "Stacks & Queues",
+    "statement": "Implementa RecentCounter. Cada llamada ping(t) agrega el timestamp t y debe regresar cuántas llamadas han ocurrido dentro del intervalo inclusivo [t - 3000, t]. Los timestamps llegan en orden estrictamente creciente.",
+    "constraints": [
+      "1 <= t <= 1000000000",
+      "Cada nuevo t es mayor que el anterior",
+      "Usa una cola para descartar timestamps que ya quedaron fuera de la ventana"
+    ],
+    "template": "class RecentCounter {\npublic:\n    RecentCounter() {\n    }\n\n    int ping(int t) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "ping(1), ping(100), ping(3001), ping(3002)",
+        "output": "[1,2,3,3]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "pings = [1,100,3001,3002]",
+        "expected": "[1,2,3,3]",
+        "code": "RecentCounter rc; vector<int> out; for(int t: vector<int>{1,100,3001,3002}) out.push_back(rc.ping(t)); __answer=ans(out);",
+        "hidden": false
+      },
+      {
+        "input": "pings = [1]",
+        "expected": "[1]",
+        "code": "RecentCounter rc; vector<int> out; out.push_back(rc.ping(1)); __answer=ans(out);",
+        "hidden": false
+      },
+      {
+        "input": "pings = [100,3100,6100]",
+        "expected": "[1,2,2]",
+        "code": "RecentCounter rc; vector<int> out; for(int t: vector<int>{100,3100,6100}) out.push_back(rc.ping(t)); __answer=ans(out);",
+        "hidden": false
+      },
+      {
+        "input": "pings = [1,3000,3001,6001]",
+        "expected": "[1,2,3,2]",
+        "code": "RecentCounter rc; vector<int> out; for(int t: vector<int>{1,3000,3001,6001}) out.push_back(rc.ping(t)); __answer=ans(out);",
+        "hidden": true
+      },
+      {
+        "input": "pings = [50,3050,3051,6051,9052]",
+        "expected": "[1,2,2,2,1]",
+        "code": "RecentCounter rc; vector<int> out; for(int t: vector<int>{50,3050,3051,6051,9052}) out.push_back(rc.ping(t)); __answer=ans(out);",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "time-needed-buy-tickets",
+    "title": "Time Needed to Buy Tickets",
+    "difficulty": "Easy",
+    "category": "Stacks & Queues",
+    "statement": "Hay personas en una cola. En cada segundo, la persona al frente compra un boleto. Si todavía necesita más, vuelve al final de la cola; si terminó, sale. Regresa cuántos segundos pasan hasta que la persona en la posición k compra todos sus boletos.",
+    "constraints": [
+      "1 <= tickets.size() <= 100",
+      "1 <= tickets[i] <= 100",
+      "0 <= k < tickets.size()"
+    ],
+    "template": "class Solution {\npublic:\n    int timeRequiredToBuy(vector<int>& tickets, int k) {\n        // Tu código aquí\n        return 0;\n    }\n};",
+    "examples": [
+      {
+        "input": "tickets = [2,3,2], k = 2",
+        "output": "6"
+      }
+    ],
+    "tests": [
+      {
+        "input": "tickets = [2,3,2], k = 2",
+        "expected": "6",
+        "code": "vector<int> v={2,3,2}; Solution s; __answer=ans(s.timeRequiredToBuy(v,2));",
+        "hidden": false
+      },
+      {
+        "input": "tickets = [5,1,1,1], k = 0",
+        "expected": "8",
+        "code": "vector<int> v={5,1,1,1}; Solution s; __answer=ans(s.timeRequiredToBuy(v,0));",
+        "hidden": false
+      },
+      {
+        "input": "tickets = [1], k = 0",
+        "expected": "1",
+        "code": "vector<int> v={1}; Solution s; __answer=ans(s.timeRequiredToBuy(v,0));",
+        "hidden": false
+      },
+      {
+        "input": "tickets = [1,2,3,4], k = 2",
+        "expected": "8",
+        "code": "vector<int> v={1,2,3,4}; Solution s; __answer=ans(s.timeRequiredToBuy(v,2));",
+        "hidden": true
+      },
+      {
+        "input": "tickets = [3,3,3], k = 1",
+        "expected": "8",
+        "code": "vector<int> v={3,3,3}; Solution s; __answer=ans(s.timeRequiredToBuy(v,1));",
+        "hidden": true
+      }
+    ]
+  }
+]
